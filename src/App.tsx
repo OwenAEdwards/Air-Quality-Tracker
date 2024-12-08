@@ -24,17 +24,17 @@ const App: React.FC = () => {
     {
       title: 'Limit Outdoor Activities',
       description: 'Avoid prolonged outdoor exertion, especially if you experience respiratory discomfort.',
-      icon: '../src/assets/limit-outdoor.jpg',
+      icon: 'images/limit-outdoor.jpg',
     },
     {
       title: 'Use Air Purifiers',
       description: 'Consider using an air purifier indoors to maintain good air quality.',
-      icon: '../src/assets/air-purifier.jpg',
+      icon: 'images/air-purifier.jpg',
     },
     {
       title: 'Wear Masks Outdoors',
       description: 'Wear masks designed to filter particles when outdoor air quality is poor.',
-      icon: '../src/assets/mask.png',
+      icon: 'images/mask.png',
     },
   ];
 
