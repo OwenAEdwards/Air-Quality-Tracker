@@ -41,6 +41,11 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
+      {/* Main Content */}
+      <div style={{ padding: '16px' }}>
+        <h1>Welcome to the Air Quality Tracker</h1>
+        <p>Track air quality dynamically to make informed decisions and stay healthy.</p>
+      </div>
       <div style={{ padding: '16px' }}>
         <AQISummary aqi={aqiData.aqi} location={aqiData.location} status={aqiData.status} Icon={Cloud} />
         <AirQualityMap locations={mapData} />
