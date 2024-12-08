@@ -2,25 +2,60 @@ import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from '@mui/material';
+import { Link } from 'react-scroll'; // For smooth scrolling
 
 const Header: React.FC = () => {
+  const aqiImage = './images/aqi.jpg';
+
   return (
     <AppBar position="static">
-      <Toolbar>
-        {/* Menu Icon - can be used for navigation in the future */}
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
-        {/* App Title */}
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Air Quality Tracker
-        </Typography>
-        {/* Placeholder for future options (e.g., user profile) */}
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        {/* Title and Icon */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {/* Add icons or buttons for additional actions if needed */}
+          <img
+            src={aqiImage}
+            alt="AQI Icon"
+            style={{ width: 40, height: 40, marginRight: 8, borderRadius: '50%' }}
+          />
+          <Typography variant="h6" component="div">
+            Air Quality Tracker
+          </Typography>
+        </Box>
+        {/* Navigation Links */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Link
+            to="aqi-summary"
+            smooth={true}
+            duration={500}
+            style={{ color: 'inherit', textDecoration: 'none', marginRight: '16px', cursor: 'pointer' }}
+          >
+            AQI Summary
+          </Link>
+          <Link
+            to="air-quality-map"
+            smooth={true}
+            duration={500}
+            style={{ color: 'inherit', textDecoration: 'none', marginRight: '16px', cursor: 'pointer' }}
+          >
+            Air Quality Map
+          </Link>
+          <Link
+            to="health-tips"
+            smooth={true}
+            duration={500}
+            style={{ color: 'inherit', textDecoration: 'none', marginRight: '16px', cursor: 'pointer' }}
+          >
+            Health Tips
+          </Link>
+          <Link
+            to="more-info"
+            smooth={true}
+            duration={500}
+            style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+          >
+            More Information
+          </Link>
         </Box>
       </Toolbar>
     </AppBar>
