@@ -8,6 +8,7 @@ import HealthTipCard from './components/HealthTipCard';
 import CitySearch from './components/CitySearch';
 import { Cloud } from '@mui/icons-material';
 import axios from 'axios';
+import { Alert } from '@mui/material';  // Import Alert component
 
 const App: React.FC = () => {
   // State to store AQI data
@@ -43,6 +44,9 @@ const App: React.FC = () => {
     },
   ]);
 
+  // State for no data alert
+  const [noData, setNoData] = useState(false);
+
   // Import API key
   const apiKey = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
 
@@ -52,6 +56,11 @@ const App: React.FC = () => {
       const geoResponse = await axios.get(
         `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
       );
+
+      if (geoResponse.data.length === 0) {
+        setNoData(true);  // Set no data if no city found
+        return;
+      }
 
       const { lat, lon, name } = geoResponse.data[0];
       const aqiResponse = await axios.get(
@@ -79,8 +88,11 @@ const App: React.FC = () => {
         ...prev,
         { name, aqi, coordinates: [lat, lon] as [number, number] },
       ]);
+
+      setNoData(false);  // Reset noData if data is found
     } catch (error) {
       console.error('Error fetching AQI data:', error);
+      setNoData(true);  // Set no data in case of error
     }
   };
 
@@ -94,6 +106,13 @@ const App: React.FC = () => {
 
         {/* City Search */}
         <CitySearch onSearch={fetchCityAQI} />
+
+        {/* Alert for no data */}
+        {noData && (
+          <Alert severity="error" sx={{ marginTop: 2 }}>
+            No data found for the entered city.
+          </Alert>
+        )}
       </div>
 
       {/* Sections of the page */}
